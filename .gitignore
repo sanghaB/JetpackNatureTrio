@@ -13,3 +13,9 @@
 .externalNativeBuild
 .cxx
 local.properties
+.idea/
+*.log
+build/
+.gradle/
+.gradle-wrapper.jar
+gradle-wrapper.properties
