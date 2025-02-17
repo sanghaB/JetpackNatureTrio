@@ -109,7 +109,9 @@ fun ViewPagerWithList(viewModel: ListViewModel) {
     BottomSheetHost(showSheet, listItems)
 }
 
-@OptIn(ExperimentalFoundationApi::class)
+// To see the Preview
+
+/*@OptIn(ExperimentalFoundationApi::class)
 @Preview
 @Composable
 fun ViewPagerImages1() {
@@ -167,12 +169,12 @@ fun ViewPagerImages1() {
                 }
             }
 
-//            Spacer(modifier = Modifier.height(16.dp))
-//            SearchField()
-//            Spacer(modifier = Modifier.height(10.dp))
-//            ListScreen(viewModel = ListViewModel(getListItemsUseCase = GetListItemsUseCase(repository = ListRepository())))
+            Spacer(modifier = Modifier.height(16.dp))
+            SearchField()
+            Spacer(modifier = Modifier.height(10.dp))
+            ListScreen(viewModel = ListViewModel(getListItemsUseCase = GetListItemsUseCase(repository = ListRepository())))
         }
 
     }
 
-}
+}*/
