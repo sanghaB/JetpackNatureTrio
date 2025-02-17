@@ -15,6 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.util.trace
 
 
 @Composable
@@ -36,6 +37,7 @@ fun SearchField(searchQuery: String, onQueryChanged: (String) -> Unit) {
             unfocusedContainerColor = Color.White,
             focusedContainerColor = Color.White
         ),
+        singleLine = true,
         modifier = Modifier
             .fillMaxWidth()
             .wrapContentWidth(Alignment.CenterHorizontally)
