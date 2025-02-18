@@ -1,7 +1,7 @@
-package com.example.datajetpackapplication.data.model.repository
+package com.example.datajetpackapplication.data.repository
 
 import com.example.datajetpackapplication.R
-import com.example.datajetpackapplication.data.model.ListItems
+import com.example.datajetpackapplication.domain.model.ListItems
 import com.example.datajetpackapplication.domain.repository.ListRepository
 //data
 //model

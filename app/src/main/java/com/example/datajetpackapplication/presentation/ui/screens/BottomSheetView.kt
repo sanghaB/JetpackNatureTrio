@@ -16,7 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.datajetpackapplication.data.model.ListItems
+import com.example.datajetpackapplication.domain.model.ListItems
 import com.example.datajetpackapplication.domain.usecase.ListAnalysisUseCase
 
 

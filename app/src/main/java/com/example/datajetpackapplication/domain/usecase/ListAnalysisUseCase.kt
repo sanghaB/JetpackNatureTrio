@@ -1,7 +1,7 @@
 package com.example.datajetpackapplication.domain.usecase
 
-import com.example.datajetpackapplication.data.model.ListAnalysisResult
-import com.example.datajetpackapplication.data.model.ListItems
+import com.example.datajetpackapplication.domain.model.ListAnalysisResult
+import com.example.datajetpackapplication.domain.model.ListItems
 
 class ListAnalysisUseCase {
     fun analyzeList(listItems: List<ListItems>): ListAnalysisResult {

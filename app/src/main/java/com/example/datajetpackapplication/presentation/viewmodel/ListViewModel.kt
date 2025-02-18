@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.datajetpackapplication.R
 import com.example.datajetpackapplication.domain.usecase.GetListItemsUseCase
-import com.example.datajetpackapplication.data.model.ListItems
+import com.example.datajetpackapplication.domain.model.ListItems
 import com.example.datajetpackapplication.domain.enumclass.Category
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

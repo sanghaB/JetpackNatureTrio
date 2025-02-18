@@ -1,4 +1,4 @@
-package com.example.datajetpackapplication.data.model
+package com.example.datajetpackapplication.domain.model
 
 data class ListAnalysisResult(
     val categoryCounts: Map<String, Int>,

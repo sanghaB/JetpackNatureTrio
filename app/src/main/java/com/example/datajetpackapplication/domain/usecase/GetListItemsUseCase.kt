@@ -1,6 +1,6 @@
 package com.example.datajetpackapplication.domain.usecase
 
-import com.example.datajetpackapplication.data.model.ListItems
+import com.example.datajetpackapplication.domain.model.ListItems
 import com.example.datajetpackapplication.domain.enumclass.Category
 import com.example.datajetpackapplication.domain.repository.ListRepository
 
