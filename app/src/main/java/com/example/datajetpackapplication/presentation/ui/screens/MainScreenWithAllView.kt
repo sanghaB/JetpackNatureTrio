@@ -35,27 +35,19 @@ import com.example.datajetpackapplication.presentation.viewmodel.ListViewModel
 @Composable
 fun ViewPagerWithList(viewModel: ListViewModel) {
     val listItems by viewModel.listItems.collectAsState()
+    val searchQuery by viewModel.searchQuery.collectAsState()
+    val filteredList by viewModel.filteredList.collectAsState()
+    val isToastShown by viewModel.isToastShown.collectAsState()
     val listState = rememberLazyListState()
     val showSheet = rememberBottomSheetState()
     val context = LocalContext.current
-    var searchQuery by remember { mutableStateOf("") }
-
-    val filteredList = listItems.filter {
-        it.title.contains(searchQuery, ignoreCase = true) ||
-                it.description.contains(searchQuery, ignoreCase = true)
-    }
-    var isToastShown by remember { mutableStateOf(false) }
-
-    LaunchedEffect(searchQuery) {
-        if (searchQuery.isNotEmpty() && filteredList.isEmpty() && !isToastShown) {
-            Toast.makeText(context, "No results found", Toast.LENGTH_SHORT).show()
-            isToastShown = true
-        } else if (filteredList.isNotEmpty()) {
-            isToastShown = false
-        }
-    }
     val pagerState = rememberPagerState(pageCount = { 3 })
 
+    LaunchedEffect(isToastShown) {
+        if (isToastShown) {
+            Toast.makeText(context, "No results found", Toast.LENGTH_SHORT).show()
+        }
+    }
 
     Box(modifier = Modifier.fillMaxSize()) {
         LazyColumn(
@@ -86,7 +78,7 @@ fun ViewPagerWithList(viewModel: ListViewModel) {
                         .background(Color.White)
                         .padding(top = 16.dp, bottom = 4.dp)
                 ) {
-                    SearchField(searchQuery) { query -> searchQuery = query }
+                    SearchField(searchQuery) { query -> viewModel.updateSearchQuery(query) }
                 }
             }
 
@@ -107,6 +99,8 @@ fun ViewPagerWithList(viewModel: ListViewModel) {
 
     BottomSheetHost(showSheet, listItems)
 }
+
+
 
 // To see the Preview
 
