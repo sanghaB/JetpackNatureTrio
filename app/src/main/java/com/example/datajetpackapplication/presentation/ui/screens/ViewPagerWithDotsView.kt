@@ -21,6 +21,8 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -28,18 +30,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import com.example.datajetpackapplication.R
 import com.example.datajetpackapplication.presentation.viewmodel.ListViewModel
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun ViewPagerView(viewModel: ListViewModel, pagerState: PagerState) {
-    val images = listOf(
-        R.drawable.ic_fruits,
-        R.drawable.ic_animals,
-        R.drawable.ic_flowers
-    )
-    val categories = listOf("fruits", "animals", "flowers")
+    val images by viewModel.images.collectAsState()
+    val categories by viewModel.categories.collectAsState()
 
     LaunchedEffect(pagerState.currentPage) {
         viewModel.updateList(categories[pagerState.currentPage])
@@ -79,15 +76,15 @@ fun ViewPagerView(viewModel: ListViewModel, pagerState: PagerState) {
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun DotsIndicator(pagerState: PagerState, modifier: Modifier = Modifier) {
-    val images = listOf(R.drawable.ic_fruits, R.drawable.ic_animals, R.drawable.ic_flowers)
+fun DotsIndicator(pagerState: PagerState, viewModel: ListViewModel, modifier: Modifier = Modifier) {
+    val categories by viewModel.categories.collectAsState()
 
     Row(
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier
     ) {
-        images.indices.forEach { index ->
+        categories.indices.forEach { index ->
             Box(
                 modifier = Modifier
                     .size(if (pagerState.currentPage == index) 10.dp else 8.dp)
@@ -97,7 +94,7 @@ fun DotsIndicator(pagerState: PagerState, modifier: Modifier = Modifier) {
                     )
                     .padding(4.dp)
             )
-            if (index != images.lastIndex) {
+            if (index != categories.lastIndex) {
                 Spacer(modifier = Modifier.width(10.dp))
             }
         }

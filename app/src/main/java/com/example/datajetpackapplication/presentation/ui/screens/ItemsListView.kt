@@ -20,7 +20,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.datajetpackapplication.model.ListItems
+import com.example.datajetpackapplication.data.model.ListItems
 
 @Composable
 fun ListItemCard(item: ListItems) {

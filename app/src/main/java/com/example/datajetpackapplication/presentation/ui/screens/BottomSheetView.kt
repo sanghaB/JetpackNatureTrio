@@ -16,7 +16,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.datajetpackapplication.model.ListItems
+import com.example.datajetpackapplication.data.model.ListItems
+import com.example.datajetpackapplication.domain.usecase.ListAnalysisUseCase
 
 
 @Composable
@@ -28,18 +29,11 @@ fun rememberBottomSheetState(): MutableState<Boolean> {
 @Composable
 fun BottomSheetHost(
     showSheet: MutableState<Boolean>,
-    listItems: List<ListItems>
+    listItems: List<ListItems>,
+    useCase: ListAnalysisUseCase = ListAnalysisUseCase()
 ) {
     if (showSheet.value) {
-        val categoryCounts = listItems.groupBy { it.title }.mapValues { it.value.size }
-
-        val charCount = listItems
-            .flatMap { it.title.lowercase().toList() }
-            .groupingBy { it }
-            .eachCount()
-            .toList()
-            .sortedByDescending { it.second }
-            .take(3)
+        val analysisResult = useCase.analyzeList(listItems)
 
         ModalBottomSheet(
             onDismissRequest = { showSheet.value = false }
@@ -51,22 +45,23 @@ fun BottomSheetHost(
                     .padding(16.dp)
             ) {
                 Text(
-                    text = "Number of Fruits:${categoryCounts.size}",
+                    text = "Number of Fruits: ${analysisResult.categoryCounts.size}",
                     fontSize = 20.sp,
                     color = Color.Black
                 )
 
-                categoryCounts.forEach { (category, count) ->
+                analysisResult.categoryCounts.forEach { (category, count) ->
                     Text(text = "$category: $count items", fontSize = 16.sp, color = Color.DarkGray)
                 }
 
                 Spacer(modifier = Modifier.height(8.dp))
 
                 Text(text = "Top 3 Occurring Characters:", fontSize = 18.sp, color = Color.Black)
-                charCount.forEach { (char, count) ->
+                analysisResult.topThreeCharacters.forEach { (char, count) ->
                     Text(text = "$char = $count", fontSize = 16.sp, color = Color.DarkGray)
                 }
             }
         }
     }
 }
+

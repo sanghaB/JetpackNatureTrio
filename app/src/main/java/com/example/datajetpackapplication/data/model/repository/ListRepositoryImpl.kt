@@ -1,8 +1,11 @@
-package com.example.datajetpackapplication.model
+package com.example.datajetpackapplication.data.model.repository
 
 import com.example.datajetpackapplication.R
+import com.example.datajetpackapplication.data.model.ListItems
 import com.example.datajetpackapplication.domain.repository.ListRepository
-
+//data
+//model
+//repository
 class ListRepositoryImpl : ListRepository {
     override fun getFruits(): List<ListItems> {
         return listOf(

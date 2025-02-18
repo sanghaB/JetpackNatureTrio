@@ -2,7 +2,7 @@ package com.example.datajetpackapplication.di//package com.example.datajetpackap
 
 import com.example.datajetpackapplication.domain.usecase.GetListItemsUseCase
 import com.example.datajetpackapplication.domain.repository.ListRepository
-import com.example.datajetpackapplication.model.ListRepositoryImpl
+import com.example.datajetpackapplication.data.model.repository.ListRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
